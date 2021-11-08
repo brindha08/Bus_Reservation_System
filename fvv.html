@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Welcome To Registration Form</title>
+ <style>
+ body {
+ margin: 0px;
+ background-color:gray;
+ 
+ color: #f9fcf5;
+ font-family: Arial, Helvetica, sans-serif;
+ }
+ #main {
+ width: 600px;
+ height: auto;
+ overflow: hidden;
+ padding-bottom: 20px;
+ margin-left: auto;
+ margin-right: auto;
+ border-radius: 5px;
+ padding-left: 10px;
+ margin-top: 100px;
+ border-top: 3px double #f1f1f1;
+ border-bottom: 3px double #f1f1f1;
+ padding-top: 20px;
+}
+ .highlight {
+ background: yellow;
+ }
+ .disabled {
+ background:red;
+ opacity: 0.7;
+ }
+ #main table {
+ font-family: "Comic Sans MS", cursive;
+ }
+ 
+ #main .tb {
+ height: 28px;
+ width: 230px;
+ border: 1px solid #f26724;
+ color: #fd7838;
+ font-weight: bold;
+ border-left: 5px solid #f7f7f7;
+ opacity: 0.9;
+ }
+ #main .tb:focus {
+ height: 28px;
+ border: 1px solid #f26724;
+ outline: none;
+ border-left: 5px solid #f7f7f7;
+ }
+ 
+ #main .btn {
+ width: 150px;
+ height: 32px;
+ outline: none;
+ color: #f7f7f7;
+ font-weight: bold;
+ border: 0px solid #f26724;
+ text-shadow: 0px 0.5px 0.5px #fff;
+ border-radius: 2px;
+ font-weight: 600;
+ color: #f26724;
+ letter-spacing: 1px;
+ font-size: 14px;
+ background-color: #f1f1f1;
+ -webkit-transition: 1s;
+ -moz-transition: 1s;
+ transition: 1s;
+ }
+ #main .btn:hover {
+    background-color:azure;
+ outline: none;
+ border-radius: 2px;
+ color: #f1f1f1;
+ border: 1px solid #f1f1f1;
+ -webkit-transition: 1s;
+ -moz-transition: 1s;
+ transition: 1s;
+ }
+ </style>
+ <script>
+ function registration() {
+ var name = document.getElementById("t1").value;
+ var email = document.getElementById("t2").value;
+ 
+ var uname = document.getElementById("t4").value;
+ var pwd = document.getElementById("t5").value;
+ var cpwd = document.getElementById("t6").value;
+ var phone = document.getElementById("t3").value;
+ var gender = document.getElementById("g").value;
+ 
+ var pwd_expression = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
+ var letters = /^[A-Za-z]+$/;
+ var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+ var phoneno = /^\(\+[0-9][0-9]\)[0-9]{10}$/;
+ if (name == '') {
+ alert('Please enter your name');
+ }
+ else if (!letters.test(name)) {
+ alert('Name field required only alphabet characters');
+ }
+ else if (email == '') {
+ alert('Please enter your user email id');
+ }
+ else if (!filter.test(email)) {
+ alert('Invalid email.Should be in the format xxx@gmail.com');
+ }
+ else if (phone == '') {
+ alert('Please enter your Mobile Number');
+ }
+ else if (!phoneno.test(phone)) {
+ alert('Invalid Mobile Number.Should contain only 10 digits and begin with (+91).');
+ } 
+ else if(gender== ''){
+ alert('Please select your gender');
+}
+ else if (uname == '') {
+ alert('Please enter the user name.');
+ }
+ else if (!letters.test(uname)) {
+ alert('User name field requires only alphabets');
+ }
+ else if (pwd == '') {
+ alert('Please enter Password');
+ }
+ 
+ else if (!pwd_expression.test(pwd)) {
+ alert('Should contain atleast Upper case, Lower case, Special character and Numeric letter in Password filed'); }
+ else if (cpwd == '') {
+ alert('Enter Confirm Password');
+ }
+ else if (pwd != cpwd) {
+ alert('Password not Matched');
+ }
+ else if (document.getElementById("t5").value.length < 6) {
+ alert('Password minimum length is 6');
+ }
+ else if (document.getElementById("t5").value.length > 12) {
+ alert('Password maximum length is 12');
+ }
+ else {
+ alert('Form is created succesffully!');
+ }
+ }
+ var main = document.getElementById("main");
+ console.log(main.firstElementChild.nodeName);
+ main.firstElementChild.style.color = "red";
+ var hint = document.getElementById("hint");
+ console.log(hint.firstElementChild.nodeName);
+ hint.firstElementChild.style.color = "blue";
+ var elem = document.getElementById("info");
+ elem.className = "note"; 
+ elem.className += " highlight";
+ function setStyle() {
+ var elem = document.getElementById("info"); 
+ elem.style.color = "blue";
+ elem.style.fontSize = "18px";
+ elem.style.fontWeight = "bold";
+ }
+ function insert() {
+ if (document.getElementById("male").checked == true) {
+ var x = document.createElement("IMG");
+ x.setAttribute("src", "boy1.jpg");
+ x.setAttribute("width", "100");
+ x.setAttribute("height", "100");
+ x.setAttribute("alt", "The Pulpit Rock");
+ x.id = 'b1';
+ document.body.appendChild(x);
+ var list = document.getElementById("hint");
+ list.insertBefore(x, list.childNodes[0]);
+ }
+ else if (document.getElementById("female").checked == true) {
+ var x = document.createElement("IMG");
+ x.setAttribute("src", "girl1.jpg");
+ x.setAttribute("width", "100");
+ x.setAttribute("height", "100");
+ x.setAttribute("alt", "The Pulpit Rock");
+ x.id = 'g1';
+ document.body.appendChild(x);
+ var list = document.getElementById("hint");
+ list.insertBefore(x, list.childNodes[0]);
+ }
+ }
+ function replace() {
+ if (document.getElementById("male").checked == true) {
+ var gallery = ["boy2.jpg", "boy3.jpeg", "boy4.jpg", "boy5.jpg", "boy6.png"];
+ var i = 0;
+ var x = document.getElementById("replace");
+ x.onclick = function () {
+ if (i < gallery.length) {
+ document.getElementById("b1").src = gallery[i];
+ i++;
+ }
+ else {
+ return alert("reached last image");
+ i = 0;
+ document.getElementById("b1").src = "boy1.jpg";
+}
+ }
+ }
+ else if (document.getElementById("female").checked == true) {
+ var gallery = ["girl2.jpg", "girl3.jpg", "girl4.jpg", "girl5.jpg", "girl6.jpg"];
+ var i = 0;
+ var x = document.getElementById("replace");
+ x.onclick = function () {
+ if (i < gallery.length) {
+ document.getElementById("g1").src = gallery[i];
+ i++;
+ }
+ else {
+ alert("reached last image");
+ i = 0;
+ document.getElementById("g1").src = "girl1.jpg";
+ }
+ }
+ }
+ }
+ function del() {
+ if (document.getElementById("male").checked == true) {
+ document.getElementById("b1").remove();
+ }
+ else if (document.getElementById("female").checked == true) {
+ document.getElementById("g1").remove();
+ }
+ }
+ </script>
+</head>
+<body>
+ 
+ <div id="main">
+ 
+ <div id="info" class="disabled"><h1>USER ACCOUNT CREATION FORM</h1></div><br /
+>
+ <button type="button" onclick="setStyle()">Click here to change style</button>
+ <div id="main">
+ 
+ <p id="hint"><span><h1>Create your account.</h1></span></p>
+ </div><br />
+ 
+ <div class="login">
+ <table cellspacing="2" align="center" cellpadding="8" border="0" ng-app="" method="post" action="http://localhost/angul/success.php">
+ <tr>
+ <td align="right">Enter Name :</td>
+ <td><input type="text" placeholder="Enter user here" id="t1" ngmodel="cname" class="tb" /></td>
+ <div id="x">
+ </tr>
+ <tr>
+ <td align="right">Enter Email ID :</td>
+ <td><input type="text" placeholder="Enter Email ID here" id="t2" ng-model="email" class="tb" /></td>
+ </tr>
+ <tr>
+ <td align="right">Enter Mobile Number :</td>
+ <td><input type="text" placeholder="Enter Mobile Number here" id="t3" ng-model="mob" class="tb" /></td>
+ </tr>
+ <tr>
+ <td align="right"><label id="g" ngmodel="gen">Select your gender:</label></td>
+ <td><input type="radio" id="male" name="msex" value="Male" /><span
+>Male</span></td>
+ <td><input type="radio" id="female" name="fsex" value="Female" /><span>Female</span></td>
+ </tr>
+ <tr>
+ <td><input type="button" id="insert" name="insert" value="insert"
+onclick="insert()" /></td>
+ <td><input type="button" id="replace" name="replace" value="replace" onclick="replace()" /></td>
+ <td><input type="button" id="dele" name="delete" value="delete" onclick="del()" /></td>
+ </tr>
+ <tr>
+ <td align="right">Enter Username :</td>
+ <td><input type="text" placeholder="Enter Username here" id="t4" ng-model="uname" class="tb" /></td>
+ </tr>
+ <tr>
+ <td align="right">Enter Password :</td>
+ <td><input type="password" placeholder="Enter Password here" id="t5" ng-model="pwd" class="tb" /></td>
+ </tr>
+ <tr>
+ <td align="right">Enter Confirm Password :</td>
+ <td><input type="password" placeholder="Enter Password here" id="t6" class="tb" /></td>
+ </tr>
+ <tr>
+ <td><input type="reset" value="Clear Form" onclick="clearFunc()" id="res" class="btn" /></td>
+ <td>
+ <input type="submit" value="Create Account" class="btn" onclick="registration()" />
+ </td>
+ </tr>
+ </table>
+ </div>
+ 
+ </div>
+ 
+</body>
+</html>
